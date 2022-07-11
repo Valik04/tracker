@@ -1,44 +1,41 @@
-import React, { useRef ,useState} from "react";
+import React, { useRef} from "react";
+import List from "./components/List";
 
 function App() {
     const inputRef = useRef(null);
-    const [message, setMessage] = useState('');
     const [list, setList] = React.useState([]);
 
+    function deleteTimer(e, id) {
+        e.preventDefault()
+        const newList = list.filter((item) => item.id !== id);
+        setList(newList);
+    }
 
     function handleClick(e) {
         e.preventDefault()
-        setMessage(inputRef.current.value);
+        if (!inputRef.current.value) {
+            inputRef.current.value = new Date().toLocaleDateString();
+        }
 
-        const newList = list.concat(inputRef.current.value);
+        let item = {id: (new Date()).getTime() , value:inputRef.current.value}
+        list.unshift(item);
+        const newList = [...list]
         setList(newList);
-
-        inputRef.current.value = null
+        inputRef.current.value = null;
     }
 
   return (
     <div className="App">
-        <div className='item'>
+        <div className='header'>
           <h1>tracker</h1>
         </div>
-
         <form>
           <input type="text" placeholder='Enter tracker name'  ref={inputRef} />
-
-
                 <ul>
                     {list.map((item) => (
-                        <li>{item}
-                            <div className='tracker-buttons'>
-                                <button className='start'>x</button>
-                                <button className='stop'>x</button>
-                            </div>
-                        </li>
+                        <List key={item.id} item = {item}  deleteTimer={deleteTimer}/>
                     ))}
                 </ul>
-
-
-
           <button type='submit' onClick={handleClick}>
             <span className="material-icons">
                 not_started
