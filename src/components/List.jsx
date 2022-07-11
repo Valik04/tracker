@@ -34,7 +34,7 @@ function List ({ item,deleteTimer}) {
 
     return(
 
-        <li className={active ? 'green':'red'}>
+        <li className={active ? 'active-li':'inactive-li'}>
             {active ? <span className='name-tracker' >{item.value}</span> : <span className='name-tracker-active'>{item.value}</span>}
             {active ? <span className='time'>{moment().hour(0).minute(0).second(count).format('HH : mm : ss')}</span> : <span className='time-active'>{moment().hour(0).minute(0).second(count).format('HH : mm : ss')}</span>}
             <div className='tracker-buttons'>

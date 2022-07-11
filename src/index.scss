@@ -51,11 +51,11 @@ body {
           border-bottom: 1px solid rgba(160, 164, 168, 0.3);
           padding: 30px 0 30px 20px ;
 
-          &.green{
+          &.active-li{
             background-color: white;
           }
 
-          &.red{
+          &.inactive-li{
             border-left:1px solid rgba(160, 164, 168, 0.3) ;
             border-right:1px solid rgba(160, 164, 168, 0.3) ;
           }
